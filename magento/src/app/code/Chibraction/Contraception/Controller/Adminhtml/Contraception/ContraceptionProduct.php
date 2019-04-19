@@ -11,6 +11,4 @@ abstract class ContraceptionProduct extends \Magento\Backend\App\Action
      * @see _isAllowed()
      */
     const ADMIN_RESOURCE = 'Contraception_Chibraction::item_list';
-
-
 }

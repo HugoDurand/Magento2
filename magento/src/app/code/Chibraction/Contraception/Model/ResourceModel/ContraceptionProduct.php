@@ -16,6 +16,6 @@ class ContraceptionProduct extends AbstractDb
     protected function _construct()
     {
         // Table Name and Primary Key column
-        $this->_init('chibraction_contraception_contraceptionProduct', 'entity_id');
+        $this->_init('chibraction_contraception_products', 'entity_id');
     }
 }

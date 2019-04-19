@@ -23,20 +23,18 @@
     <table name="chibraction_contraception_products" resource="default" engine="innodb" comment="contraception_products Table">
         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
                 comment="Entity Id"/>
-        <column xsi:type="int" name="contraception_id" padding="10" unsigned="true" nullable="false" identity="true"
+        <column xsi:type="int" name="contraception_id" padding="10" unsigned="true" nullable="false"
                 comment="Contraception Id"/>
-        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="true"
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false"
                 comment="Product Id"/>
+        <column xsi:type="int" name="position" padding="10" unsigned="true" nullable="false"
+                comment="Position"/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="entity_id"/>
         </constraint>
         <constraint xsi:type="foreign" referenceId="CHIBRACTION_CONTRACEPTION_PRODUCT_CONTRACEPTION_ID_CHIBRACTION_CONTRACEPTION_CONTRACEPTION_ENTITY_ID" table="chibraction_contraception_products"
                     column="contraception_id" referenceTable="chibraction_contraception_contraception" referenceColumn="entity_id" onDelete="CASCADE"/>
         <constraint xsi:type="foreign" referenceId="CHIBRACTION_CONTRACEPTION_PRODUCT_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ID" table="chibraction_contraception_products"
-                    column="contraception_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
-        <index referenceId="CHIBRACTION_CONTRACEPTION_PRODUCT_CONTRACEPTIONID_PRODUCTID" indexType="fulltext">
-            <column name="name"/>
-            <column name="description"/>
-        </index>
+                    column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
     </table>
 </schema>

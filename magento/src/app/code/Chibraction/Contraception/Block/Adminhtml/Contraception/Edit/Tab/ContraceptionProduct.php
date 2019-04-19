@@ -91,7 +91,7 @@ class ContraceptionProduct extends \Magento\Backend\Block\Widget\Grid\Extended
         if ($this->getItem()->getId()) {
             $this->setDefaultFilter(['in_category' => 1]);
         }
-        $collection = $this->_productFactory->create()->getCollection()->addAttributeToSelect(
+        $collection = $this->_productCollectionFactory->create()->addAttributeToSelect(
             'name'
         )->addAttributeToSelect(
             'sku'
@@ -183,7 +183,7 @@ class ContraceptionProduct extends \Magento\Backend\Block\Widget\Grid\Extended
      */
     public function getGridUrl()
     {
-        return $this->getUrl('module/products/grid', ['_current' => true]);
+        return $this->getUrl('contraception/contraception/grid', ['_current' => true]);
     }
 
     /**
@@ -193,9 +193,7 @@ class ContraceptionProduct extends \Magento\Backend\Block\Widget\Grid\Extended
     {
         $products = $this->getRequest()->getPost('selected_products');
         if ($products === null) {
-            $vProducts = $this->_productCollectionFactory->create()
-                ->addFieldToFilter('customer_id', $this->getItem()->getCustomerId())
-                ->addFieldToSelect('product_id');
+            $vProducts = $this->_productCollectionFactory->create();
             $products = array();
             foreach ($vProducts as $pdct) {
                 $products[] = $pdct->getProductId();

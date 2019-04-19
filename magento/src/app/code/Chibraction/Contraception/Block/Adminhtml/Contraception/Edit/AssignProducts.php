@@ -86,9 +86,7 @@ class AssignProducts extends \Magento\Backend\Block\Template
     public function getProductsJson()
     {
 
-        $vProducts = $this->_productCollectionFactory->create()
-            ->addFieldToFilter('contraception_id', $this->getItem()->getContradeptionId())
-            ->addFieldToSelect('product_id');
+        $vProducts = $this->_productCollectionFactory->create();
         $products = array();
         foreach ($vProducts as $pdct) {
             $products[$pdct->getProductId()] = '';
