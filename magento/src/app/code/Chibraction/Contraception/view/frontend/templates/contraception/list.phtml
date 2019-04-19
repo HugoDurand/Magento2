@@ -1,0 +1,17 @@
+<?php
+/** @var $block Chibraction\Contraception\Block\Contraception */
+$contraceptions = $block->getContraceptions();
+?>
+<ul id="department-list">
+    <?php foreach ($contraceptions as $contraception) : ?>
+        <li><?php echo $contraception->getName(); ?></li>
+    <?php endforeach; ?>
+</ul>
+<script type="text/x-magento-init">
+    {
+        "#contraception-list":
+        {
+            "contraceptionContraceptionAjax": {}
+        }
+    }
+</script>

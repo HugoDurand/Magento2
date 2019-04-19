@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="chibraction_contraception_contraception" resource="default" engine="innodb" comment="Contraception Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Contraception Name"/>
+        <column xsi:type="mediumtext" name="description" nullable="true" comment="Contraception Description"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <index referenceId="CHIBRACTION_CONTRACEPTION_NAME_DESCRIPTION" indexType="fulltext">
+            <column name="name"/>
+            <column name="description"/>
+        </index>
+    </table>
+    <table name="chibraction_contraception_products" resource="default" engine="innodb" comment="contraception_products Table">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity Id"/>
+        <column xsi:type="int" name="contraception_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Contraception Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Product Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="CHIBRACTION_CONTRACEPTION_PRODUCT_CONTRACEPTION_ID_CHIBRACTION_CONTRACEPTION_CONTRACEPTION_ENTITY_ID" table="chibraction_contraception_products"
+                    column="contraception_id" referenceTable="chibraction_contraception_contraception" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="CHIBRACTION_CONTRACEPTION_PRODUCT_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ID" table="chibraction_contraception_products"
+                    column="contraception_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="CHIBRACTION_CONTRACEPTION_PRODUCT_CONTRACEPTIONID_PRODUCTID" indexType="fulltext">
+            <column name="name"/>
+            <column name="description"/>
+        </index>
+    </table>
+</schema>

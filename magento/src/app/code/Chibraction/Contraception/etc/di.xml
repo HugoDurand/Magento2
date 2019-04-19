@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Chibraction\Contraception\Api\Data\ContraceptionSearchResultsInterface"
+            type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Chibraction\Contraception\Api\Data\ContraceptionInterface" type="Chibraction\Contraception\Model\Contraception"/>
+    <preference for="Chibraction\Contraception\Api\ContraceptionRepositoryInterface" type="Chibraction\Contraception\Model\ContraceptionRepository"/>
+
+    <!-- Create our type ContraceptionGridDataProvider -->
+    <virtualType name="ContraceptionGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Chibraction\Contraception\Model\ResourceModel\Contraception\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ContraceptionGridFilterPool</argument> <!-- Define new object for filters -->
+        </arguments>
+    </virtualType>
+
+    <!-- Create our type ContraceptionGridFilterPool -->
+    <virtualType name="ContraceptionGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Type for contraception_Contraception_listing_data_source -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="contraception_contraception_listing_data_source" xsi:type="string">Chibraction\Contraception\Model\ResourceModel\Grid\Contraception\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Simulate our class Chibraction\Contraception\Model\ResourceModel\Grid\Contraception\Collection -->
+    <virtualType name="Chibraction\Contraception\Model\ResourceModel\Grid\Contraception\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">chibraction_contraception_contraception</argument>
+            <argument name="resourceModel" xsi:type="string">Chibraction\Contraception\Model\ResourceModel\Contraception</argument>
+        </arguments>
+    </virtualType>
+</config>

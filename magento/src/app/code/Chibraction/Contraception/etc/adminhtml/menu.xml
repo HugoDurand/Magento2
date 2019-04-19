@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Chibraction_Contraception::contraception_head" title="contraception" module="Chibraction_Contraception" sortOrder="100" resource="Chibraction_Contraception::contraception_head" />
+        <add id="Chibraction_Contraception::contraception" title="Contraceptions" module="Chibraction_Contraception" sortOrder="10" parent="Chibraction_Contraception::contraception_head" action="contraception/contraception" resource="Chibraction_Contraception::contraception" />
+    </menu>
+</config>
